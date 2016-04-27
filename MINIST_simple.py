@@ -2,17 +2,6 @@ import random
 import numpy
 import math
 
-random.seed(0)
-input_size = 25
-num_hidden = 5
-output_size = 10
-#generate 5*26 matrix to represent hidden_layer's weights
-hidden_layer = [[random.random() for __ in range(input_size + 1)] for __ in range(num_hidden)]
-#generate 10*6 matrix to represent output_layer's weights
-output_layer = [[random.random() for __ in range(num_hidden + 1)] for __ in range(output_size)]
-
-network = [hidden_layer, output_layer]
-
 def sigmoid(t):
     return 1 / (1 + math.exp(-t))
 
@@ -53,3 +42,17 @@ def backpropagate(network, input_vector, targets):
 def predict(input):
     return feed_forward(network, input)[-1]
 
+random.seed(0)
+input_size = 25
+num_hidden = 5
+output_size = 10
+#generate 5*26 matrix to represent hidden_layer's weights
+hidden_layer = [[random.random() for __ in range(input_size + 1)] for __ in range(num_hidden)]
+#generate 10*6 matrix to represent output_layer's weights
+output_layer = [[random.random() for __ in range(num_hidden + 1)] for __ in range(output_size)]
+
+network = [hidden_layer, output_layer]
+for __ in range(10000):
+    for input_vector, target_vector in zip(inputs, targets): backpropagate(network, input_vector, target_vector)
+
+predict(inputs[7])
