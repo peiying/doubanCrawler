@@ -53,6 +53,7 @@ output_layer = [[random.random() for __ in range(num_hidden + 1)] for __ in rang
 
 network = [hidden_layer, output_layer]
 for __ in range(10000):
-    for input_vector, target_vector in zip(inputs, targets): backpropagate(network, input_vector, target_vector)
+    for input_vector, target_vector in zip(inputs, targets):
+        backpropagate(network, input_vector, target_vector)
 
 predict(inputs[7])
